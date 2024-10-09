@@ -1,0 +1,45 @@
+﻿Det här är en regex (reguljärt uttryck) som används för att kontrollera om 
+en sträng är ett giltigt romerskt tal. 
+Jag ska bryta ner det i delar så det blir lättare att förstå:
+
+string pattern = "^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+
+1. ^ och $
+^ betyder att vi börjar matchningen från början av strängen.
+
+$ betyder att vi slutar matchningen vid slutet av strängen.
+
+Tillsammans säkerställer de att hela strängen måste följa reglerna för ett romerskt tal.
+================================================================
+2. M{0,4}
+M står för romerska siffran 1000.
+{0,4} betyder att vi kan ha mellan 0 och 4 "M" i rad (eftersom romerska tal kan gå upp till 4000).
+================================================================
+3. (CM|CD|D?C{0,3})
+Den här delen hanterar hundratalspositionen (100–900):
+
+CM betyder 900 (1000 minus 100).
+CD betyder 400 (500 minus 100).
+D? betyder att vi kan ha en "D" (500), men det är valfritt (frågetecknet betyder "0 eller 1 av D").
+C{0,3} betyder att vi kan ha mellan 0 och 3 "C" (100), vilket gör att vi kan lägga till upp till 300.
+================================================================
+4. (XC|XL|L?X{0,3})
+Den här delen hanterar tiotal (10–90):
+
+XC betyder 90 (100 minus 10).
+XL betyder 40 (50 minus 10).
+L? betyder att vi kan ha en "L" (50), men det är valfritt.
+X{0,3} betyder att vi kan ha mellan 0 och 3 "X" (10), vilket täcker upp till 30.
+================================================================
+5. (IX|IV|V?I{0,3})
+Den här delen hanterar ental (1–9):
+
+IX betyder 9 (10 minus 1).
+IV betyder 4 (5 minus 1).
+V? betyder att vi kan ha en "V" (5), men det är valfritt.
+I{0,3} betyder att vi kan ha mellan 0 och 3 "I" (1), vilket täcker upp till 3.
+
+================================================================
+Sammanfattning:
+Regexen matchar ett korrekt romerskt tal från 1 upp till 3999.
+Varje del hanterar en specifik "position" i romerska systemet: tusental, hundratal, tiotal och ental.

@@ -20,6 +20,14 @@
             Console.WriteLine("Ange ett romerskt tal:");
             string romanInput = Console.ReadLine().ToUpper();
 
+            // Kolla att input är giltig
+            // OBS! Denna kolla saknas i klassen 'RomanNumeralsClass.cs'
+            if (!IsValidRoman(romanInput))
+            {
+                Console.WriteLine("Ogiltigt romerskt tal");
+                return;
+            }
+
             int decimalOutput = 0;
 
             // Summary
@@ -108,6 +116,17 @@
             }
 
             Console.WriteLine($"Det motsvarande heltalet är: {decimalOutput}");
+        }
+
+        static bool IsValidRoman(string input)
+        {
+            // Regex for beginners!
+            // https://www.sitepoint.com/learn-regex/
+            // https://www.youtube.com/watch?v=rhzKDrUiJVk&ab_channel=WebDevSimplified
+
+            // Kontrollera om inmatningen matchar mönstret för giltiga romerska tal
+            string pattern = "^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+            return System.Text.RegularExpressions.Regex.IsMatch(input, pattern);
         }
     }
 }
