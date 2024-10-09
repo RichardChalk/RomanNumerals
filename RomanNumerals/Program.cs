@@ -4,6 +4,13 @@
     {
         static void Main(string[] args)
         {
+            // Just for fun!
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.Clear(); // Detta uppdaterar hela konsolen med den nya bakgrundsfärgen
+
+            Console.ForegroundColor = ConsoleColor.Black;
+            
+            // ===============================================
             // EXTRA!
             // Använd en klass med ett bibliotek!
             // var translateRoman = new RomanNumeralsClass();
@@ -15,6 +22,9 @@
 
             int decimalOutput = 0;
 
+            // Summary
+            // Loopar igenom samtliga romerska tecken - en i taget
+            // ... och uppdaterar current med relevant värde
             for (int i = 0; i < romanInput.Length; i++)
             {
                 int current = 0;
@@ -48,8 +58,9 @@
                         return;
                 }
 
-                // Kolla om nästa siffra är större, då ska vi subtrahera nuvarande
-                if (i + 1 < romanInput.Length)
+                // Summary
+                // Kolla om 'nästa' siffra är större, då ska vi subtrahera nuvarande
+                if (i + 1 < romanInput.Length) // endast om det finne ett tecken till
                 {
                     int next = 0;
 
@@ -78,6 +89,8 @@
                             break;
                     }
 
+                    // Summary
+                    // Här bestäms det om vi ska addera eller subtrahera 
                     if (current < next)
                     {
                         decimalOutput -= current;
@@ -87,6 +100,7 @@
                         decimalOutput += current;
                     }
                 }
+                // Om det är sista tecknet ska det så klart adderas
                 else
                 {
                     decimalOutput += current;
